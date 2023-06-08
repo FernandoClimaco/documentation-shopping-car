@@ -7,9 +7,90 @@
 
 >A shopping cart also shows the different shipping and payment options. After the customer makes a payment, the cart organizes all the order information and sends it to you as the retailer, and to other parties, such as your bank and delivery partners for order fulfillment.
 
-## shoppingcard
+ 
 ![shoppingcard](https://github.com/FernandoClimaco/device-security-cuscatlan-service/blob/main/Shopping-cart-trick-1-1024x410.png)
 
-
-## Software Architecture
+##
+## Architecture
 ![Architecture](https://github.com/FernandoClimaco/device-security-cuscatlan-service/blob/main/shoppingCardarquitecture.png)
+
+
+##
+## CURLS: import collection in your postman for using the apis shopping car.
+![JSON COLLECTION](https://github.com/FernandoClimaco/shopping-car-cuscatlan-service/blob/main/src/main/resources/shopping-card-cuscatlan-services.postman_collection.json)
+
+
+
+
+
+## CONFIGURATION application properties: variable Vault: talk to a devops
+>-SERVICES: device-security-cuscatlan-service 
+>
+>
+ 
+
+```
+server.port=${SERVER_PORT:2023}
+
+#Configuration connection mysql
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/cuscatlanshoppingcard?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:root}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:}
+spring.datasource.platform=${SPRING_DATASOURCE_PLATORM:mysql}
+
+#sql validation
+spring.datasource.dbcp2.validation-query=select 1 from dual
+
+
+#Configuration connection redis
+spring.redis.database=${SPRING_REDIS_DATABASE:6}
+spring.redis.host=${SPRING_REDIS_HOST:localhost}
+spring.redis.port=${SPRING_REDIS_PORT:6379}
+spring.redis.password=${SPRING_REDIS_PASSWORD:}
+spring.redis.ttl=${SPRING_REDIS_TTL:60}
+
+#Configuration log
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
+logging.level.org.hibernate.SQL=WARN
+logging.level.root=INFO
+
+
+request.bearer=${REQUEST_BEARER:Bearer}
+
+#Configuration JWT secret
+jwt.secret=${JWT_SECRETS:fern4nd0}
+
+```
+
+
+>
+>
+
+
+
+>-SERVICES: shopping-card-cuscatlan-service
+
+```
+server.port=${SERVER_PORT:2024}
+
+#Configuration connection mysql
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/cuscatlanshoppingcard?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:root}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:}
+spring.datasource.platform=${SPRING_DATASOURCE_PLATORM:mysql}
+spring.datasource.driver-class-name=${SPRING_DATASOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+
+
+#For generate database
+spring.sql.init.mode=always
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.defer-datasource-initialization=true
+
+
+#Consumer API:
+fake.store.api.url=${FAKE_STORE_API_URL:https://fakestoreapi.com/}
+device.security.cuscatlan.service.url=${DEVICE_SECURITY_CUSCATLAN_SERVICE_URL:http://localhost:2023}
+device.security.cuscatlan.service.auth.validate.endpoint=${DEVICE_SECURITY_CUSCATLAN_SERVICE_AUTH_VALIDATE_ENDPOINT:/auth/validation}
+
+spring.jackson.default-property-inclusion = NON_NULL
+```
