@@ -28,7 +28,7 @@
 
 ## CONFIGURATION application properties: variable Vault: talk to a devops
 >-SERVICES: device-security-cuscatlan-service 
->
+# view github:  https://github.com/FernandoClimaco/device-security-cuscatlan-service
 >
  
 
@@ -72,6 +72,8 @@ jwt.secret=${JWT_SECRETS:fern4nd0}
 
 
 >-SERVICES: shopping-card-cuscatlan-service
+# view github:  https://github.com/FernandoClimaco/shopping-car-cuscatlan-service
+
 
 ```
 server.port=${SERVER_PORT:2024}
