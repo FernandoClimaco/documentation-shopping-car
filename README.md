@@ -17,8 +17,11 @@
 
 ##
 ## CURLS: import collection in your postman for using the apis shopping car.
+>Dowloand:
 ![JSON COLLECTION](https://github.com/FernandoClimaco/shopping-car-cuscatlan-service/blob/main/src/main/resources/shopping-card-cuscatlan-services.postman_collection.json)
 
+> view collection:
+![collection](https://github.com/FernandoClimaco/shopping-car-cuscatlan-service/blob/main/CURLS.PNG)
 
 
 
